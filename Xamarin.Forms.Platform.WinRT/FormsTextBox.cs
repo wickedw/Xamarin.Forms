@@ -59,6 +59,7 @@ namespace Xamarin.Forms.Platform.WinRT
 		{
 			TextChanged += OnTextChanged;
 			SelectionChanged += OnSelectionChanged;
+			IsEnabledChanged += OnIsEnabledChanged;
 		}
 
 		public Brush BackgroundFocusBrush

@@ -12,10 +12,15 @@ namespace Xamarin.Forms
 	public sealed class Setter : IValueProvider
 	{
 		readonly ConditionalWeakTable<BindableObject, object> _originalValues = new ConditionalWeakTable<BindableObject, object>();
+		object _value;
 
 		public BindableProperty Property { get; set; }
 
-		public object Value { get; set; }
+		public object Value
+		{
+			get { return _value; }
+			set { _value = value; }
+		}
 
 		object IValueProvider.ProvideValue(IServiceProvider serviceProvider)
 		{

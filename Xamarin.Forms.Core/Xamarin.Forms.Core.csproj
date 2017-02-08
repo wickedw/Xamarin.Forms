@@ -246,6 +246,7 @@
     <Compile Include="RoutingEffect.cs" />
     <Compile Include="RowDefinition.cs" />
     <Compile Include="RowDefinitionCollection.cs" />
+    <Compile Include="RuntimeNamePropertyAttribute.cs" />
     <Compile Include="ScrollOrientation.cs" />
     <Compile Include="ScrollToMode.cs" />
     <Compile Include="ScrollToPosition.cs" />
@@ -354,6 +355,7 @@
     <Compile Include="Internals\ToolbarTracker.cs" />
     <Compile Include="ViewExtensions.cs" />
     <Compile Include="ViewState.cs" />
+    <Compile Include="Visual\VisualStateManager.cs" />
     <Compile Include="WeakEventManager.cs" />
     <Compile Include="WeakReferenceExtensions.cs" />
     <Compile Include="WebNavigatedEventArgs.cs" />
@@ -472,7 +474,9 @@
       <Name>Xamarin.Forms.Platform</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>

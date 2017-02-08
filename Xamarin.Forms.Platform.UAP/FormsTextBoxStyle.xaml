@@ -25,8 +25,8 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="uwp:FormsTextBox">
-					<Grid>
-						<Grid.Resources>
+                    <Grid>
+                        <Grid.Resources>
 							<Style x:Name="DeleteButtonStyle" TargetType="Button">
 								<Setter Property="Template">
 									<Setter.Value>
@@ -34,7 +34,8 @@
 											<Grid x:Name="ButtonLayoutGrid" BorderBrush="{ThemeResource TextBoxButtonBorderThemeBrush}"
 											      BorderThickness="{TemplateBinding BorderThickness}"
 											      Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}">
-												<VisualStateManager.VisualStateGroups>
+                                              
+                                                <VisualStateManager.VisualStateGroups>
 													<VisualStateGroup x:Name="CommonStates">
 														<VisualState x:Name="Normal" />
 														<VisualState x:Name="PointerOver">
@@ -84,9 +85,38 @@
 							<RowDefinition Height="*" />
 						</Grid.RowDefinitions>
 						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup x:Name="CommonStates">
+                            <!-- TODO Hopefully once we sort out GoToStateCore, we can swap these back -->
+                            <VisualStateGroup x:Name="FormsManaged">
+                                <VisualState x:Name="FormsNormal" />
+                                <VisualState x:Name="FormsDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+										                               Storyboard.TargetName="HeaderContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+										                               Storyboard.TargetName="BackgroundElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledTransparentBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BorderElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+										                               Storyboard.TargetName="PlaceholderTextContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Disabled">
-									<Storyboard>
+									<!--<Storyboard>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
 										                               Storyboard.TargetName="HeaderContentPresenter">
 											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
@@ -108,8 +138,9 @@
 										                               Storyboard.TargetName="PlaceholderTextContentPresenter">
 											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledChromeDisabledLowBrush}" />
 										</ObjectAnimationUsingKeyFrames>
-									</Storyboard>
+									</Storyboard>-->
 								</VisualState>
+                              
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver">
 									<Storyboard>

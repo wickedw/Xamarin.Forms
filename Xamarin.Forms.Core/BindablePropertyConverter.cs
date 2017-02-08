@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -44,10 +45,13 @@ namespace Xamarin.Forms
 				{
 					var style = parent as Style;
 					var triggerBase = parent as TriggerBase;
+					var visualState = parent as VisualState;
 					if (style != null)
 						type = style.TargetType;
 					else if (triggerBase != null)
 						type = triggerBase.TargetType;
+					else if (visualState != null)
+						type = FindTypeForVisualState(parentValuesProvider.ParentObjects.ToList());
 				}
 				else if (parentValuesProvider.TargetObject is Trigger)
 					type = (parentValuesProvider.TargetObject as Trigger).TargetType;
@@ -69,6 +73,19 @@ namespace Xamarin.Forms
 				return ConvertFrom(type, parts[1], lineinfo);
 			}
 			throw new XamlParseException($"Can't resolve {value}. Syntax is [[prefix:]Type.]PropertyName.", lineinfo);
+		}
+
+		Type FindTypeForVisualState(List<object> parentObjects)
+		{
+			var obj = parentObjects.Skip(4).Take(1).FirstOrDefault();  // Skip this Setter, VisualState, and VisualStateGroup, and Setter
+
+			var style = obj as Style;
+			if (style != null)
+			{
+				return style.TargetType;
+			}
+
+			return obj.GetType();
 		}
 
 		public override object ConvertFromInvariantString(string value)

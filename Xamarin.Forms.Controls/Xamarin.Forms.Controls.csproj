@@ -103,6 +103,10 @@
     <Compile Include="GalleryPages\PlatformSpecificsGalleries\VisualElementiOS.cs" />
     <Compile Include="GalleryPages\PlatformSpecificsGalleries\WindowsPlatformSpecificsGalleryHelpers.cs" />
     <Compile Include="GalleryPages\PlatformSpecificsGallery.cs" />
+    <Compile Include="GalleryPages\VisualStateManagerGalleries\EntryDisabledStatesGallery.xaml.cs">
+      <DependentUpon>EntryDisabledStatesGallery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GalleryPages\VisualStateManagerGalleries\VisualStateManagerGallery.cs" />
     <Compile Include="LegacyRepro\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
     </Compile>
@@ -334,6 +338,12 @@
     <Reference Include="Xamarin.Insights">
       <HintPath>..\packages\Xamarin.Insights.1.12.3\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GalleryPages\VisualStateManagerGalleries\EntryDisabledStatesGallery.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Target Name="BeforeBuild">
     <CreateItem Include="blank.config">
