@@ -163,7 +163,26 @@ namespace Xamarin.Forms.Xaml
 					}
 				}
 				if (propertyInfo == null)
+				{
+					// TODO hartez 2017/02/24 16:08:09 See if this is an attached bindable property	
+					XmlName bpName;
+					if (TryGetPropertyName(parentNode, parentNode.Parent, out bpName))
+					{
+						//bool attached;
+						//string name = bpName.LocalName;
+
+						//var bindablePropertyRef = GetBindablePropertyReference(parent, parentList.XmlName.NamespaceURI, ref name, out attached, Context, node);
+
+						//if (bindablePropertyRef != null && CanAddToAttachedProperty(bindablePropertyRef, attached, node, node, Context))
+						//{
+						//	Context.IL.Append(AddValue(parent, bindablePropertyRef, node, node, Context));
+						//	return;
+						//}
+					}
+
 					throw new XamlParseException(Format("Property {0} not found", localname), node);
+				}
+					
 				MethodInfo getter;
 				if (!propertyInfo.CanRead || (getter = propertyInfo.GetMethod) == null)
 					throw new XamlParseException(Format("Property {0} does not have an accessible getter", localname), node);
