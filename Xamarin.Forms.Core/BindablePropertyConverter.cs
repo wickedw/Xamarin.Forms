@@ -77,12 +77,12 @@ namespace Xamarin.Forms
 
 		Type FindTypeForVisualState(List<object> parentObjects)
 		{
-			var obj = parentObjects.Skip(4).Take(1).FirstOrDefault();  // Skip this Setter, VisualState, and VisualStateGroup, and Setter
+			var obj = parentObjects.Skip(3).Take(1).FirstOrDefault();  // Skip this Setter, VisualState, and VisualStateGroup
 
-			var style = obj as Style;
-			if (style != null)
+			var setter = obj as Setter;
+			if (setter != null)
 			{
-				return style.TargetType;
+				return (parentObjects.Skip(4).Take(1).FirstOrDefault() as Style)?.TargetType;
 			}
 
 			return obj.GetType();

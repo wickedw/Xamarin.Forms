@@ -7,9 +7,7 @@
   <ContentPage.Resources>
     <ResourceDictionary>
       <Style TargetType="Entry" x:Key="CustomDisabledState">
-        <!--<Setter Property="IsPassword">False</Setter>-->
         <Setter Property="VisualStateManager.VisualStateGroups">
-          <!--<coll:Collection x:TypeArguments="VisualStateGroup">-->
           <VisualStateGroup x:Name="CommonStates">
             <VisualState x:Name="Normal" />
             <VisualState x:Name="Disabled">
@@ -30,11 +28,10 @@
           <VisualStateGroup x:Name="Extra">
 
           </VisualStateGroup>
-          <!--</coll:Collection>-->
         </Setter>
       </Style>
 
-      <!--<Style TargetType="Entry" x:Key="OtherStyle">
+      <Style TargetType="Entry" x:Key="OtherStyle">
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroup x:Name="CommonStates">
               <VisualState x:Name="Normal" />
@@ -46,7 +43,7 @@
               </VisualState>
             </VisualStateGroup>
         </Setter>
-      </Style>-->
+      </Style>
 
     </ResourceDictionary>
   </ContentPage.Resources>
@@ -55,8 +52,7 @@
     <Entry x:Name="Entry0" />
     <Entry x:Name="Entry1" Style="{StaticResource CustomDisabledState}" />
 
-
-    <!--<Entry x:Name="Entry2">
+    <Entry x:Name="Entry2">
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="CommonStates">
           <VisualState x:Name="Normal" />
@@ -71,13 +67,13 @@
           <VisualState x:Name="Fake" />
         </VisualStateGroup>
       </VisualStateManager.VisualStateGroups>
-    </Entry>-->
+    </Entry>
 
-    <!--<Entry x:Name="Entry3">
+    <Entry x:Name="Entry3">
       <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="Empty" />
       </VisualStateManager.VisualStateGroups>
-    </Entry>-->
+    </Entry>
 
   </StackLayout>
 
