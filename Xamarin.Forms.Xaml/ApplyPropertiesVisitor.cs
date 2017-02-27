@@ -150,7 +150,7 @@ namespace Xamarin.Forms.Xaml
 				var elementType = source.GetType();
 				var localname = parentList.XmlName.LocalName;
 
-				GetRealNameAndType(ref elementType, parentList.XmlName.NamespaceURI, ref localname, Context, node);
+				var attached = GetRealNameAndType(ref elementType, parentList.XmlName.NamespaceURI, ref localname, Context, node);
 
 				PropertyInfo propertyInfo = null;
 				try {
@@ -164,20 +164,10 @@ namespace Xamarin.Forms.Xaml
 				}
 				if (propertyInfo == null)
 				{
-					// TODO hartez 2017/02/24 16:08:09 See if this is an attached bindable property	
-					XmlName bpName;
-					if (TryGetPropertyName(parentNode, parentNode.Parent, out bpName))
+					var bindableProperty = GetBindableProperty(elementType, localname, node, false);
+					if (TryAddValue(source as BindableObject, bindableProperty, value, new XamlServiceProvider(node, Context)))
 					{
-						//bool attached;
-						//string name = bpName.LocalName;
-
-						//var bindablePropertyRef = GetBindablePropertyReference(parent, parentList.XmlName.NamespaceURI, ref name, out attached, Context, node);
-
-						//if (bindablePropertyRef != null && CanAddToAttachedProperty(bindablePropertyRef, attached, node, node, Context))
-						//{
-						//	Context.IL.Append(AddValue(parent, bindablePropertyRef, node, node, Context));
-						//	return;
-						//}
+						return;
 					}
 
 					throw new XamlParseException(Format("Property {0} not found", localname), node);
@@ -487,21 +477,8 @@ namespace Xamarin.Forms.Xaml
 					return true;
 				}
 
-				if (property.ReturnTypeInfo.GenericTypeArguments.Length > 0 && property.ReturnTypeInfo.GenericTypeArguments[0].IsInstanceOfType(convertedValue))
-				{
-					// This might be a collection we can add to
-					var addMethod = property.ReturnType.GetRuntimeMethods().FirstOrDefault(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
-					if (addMethod == null)
-						return false;
-
-					var collection = bindable.EnsureCollectionInitialized(property);
-
-					// Now add convertedValue to it
-					addMethod.Invoke(collection, new[] { value.ConvertTo(addMethod.GetParameters()[0].ParameterType, (Func<TypeConverter>)null, serviceProvider) });
-					return true;
-				}
-
-				return false;
+				// This might be a collection; see if we can add to it
+				return TryAddValue(bindable, property, value, serviceProvider);
 			}
 
 			if (nativeBindingService != null && nativeBindingService.TrySetValue(element, property, convertedValue))
@@ -509,6 +486,24 @@ namespace Xamarin.Forms.Xaml
 
 			exception = new XamlParseException($"{elementType.Name} is not a BindableObject or does not support setting native BindableProperties", lineInfo);
 			return false;
+		}
+
+		static bool TryAddValue(BindableObject bindable, BindableProperty property, object value, XamlServiceProvider serviceProvider)
+		{
+			if (property.ReturnTypeInfo.GenericTypeArguments.Length != 1 || !property.ReturnTypeInfo.GenericTypeArguments[0].IsInstanceOfType(value))
+				return false;
+			
+			// This might be a collection we can add to; see if we can find an Add method
+			var addMethod = property.ReturnType.GetRuntimeMethods().FirstOrDefault(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
+			if (addMethod == null)
+				return false;
+
+			// If there's an add method, make sure the collection is initialized
+			var collection = bindable.EnsureCollectionInitialized(property);
+
+			// And add the new value to it
+			addMethod.Invoke(collection,new[] { value.ConvertTo(addMethod.GetParameters()[0].ParameterType, (Func<TypeConverter>)null, serviceProvider) });
+			return true;
 		}
 
 		static bool TrySetterValueCollection(object element, object value)
