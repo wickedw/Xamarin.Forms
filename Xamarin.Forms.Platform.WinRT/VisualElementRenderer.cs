@@ -68,10 +68,7 @@ namespace Xamarin.Forms.Platform.WinRT
 
 		VisualElementPackager Packager { get; set; }
 
-		public void Dispose()
-		{
-			Dispose(true);
-		}
+	
 
 		void IEffectControlProvider.RegisterEffect(Effect effect)
 		{
@@ -227,7 +224,12 @@ namespace Xamarin.Forms.Platform.WinRT
 			return finalSize;
 		}
 
-		// TODO hartez 2017/07/11 18:41:54 Need suppress finalize	
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
 		protected virtual void Dispose(bool disposing)
 		{
 			if (!disposing || _disposed)
