@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -154,6 +155,7 @@ namespace Xamarin.Forms.Platform.WinRT
 				}
 				List.SelectionChanged -= OnControlSelectionChanged;
 
+				Debug.WriteLine($">>>>> ListViewRenderer Dispose 142: Setting the list datacontext to null");
 				List.DataContext = null;
 				List = null;
 			}

@@ -133,6 +133,7 @@ namespace Xamarin.Forms.Platform.WinRT
 			}
 		}
 
+		// TODO hartez 2017/07/11 18:41:38 Need suppress finalize	
 		public void Dispose()
 		{
 			Dispose(true);
