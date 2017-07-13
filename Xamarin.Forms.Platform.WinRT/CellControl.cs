@@ -202,6 +202,12 @@ namespace Xamarin.Forms.Platform.WinRT
 		{
 			var cell = newContext as Cell;
 
+			if (cell != null)
+			{
+				Cell = cell;
+				return;
+			}
+
 			if (ReferenceEquals(Cell?.BindingContext, newContext))
 				return;
 

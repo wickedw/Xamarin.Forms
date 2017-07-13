@@ -83,8 +83,10 @@ namespace Xamarin.Forms.Platform.WinRT
 					List.SetBinding(ItemsControl.ItemsSourceProperty, "");
 				}
 
+				// TODO hartez 2017/07/13 10:53:04 Should this be bound to templated items view instead?	
+
 				// WinRT throws an exception if you set ItemsSource directly to a CVS, so bind it.
-				List.DataContext = new CollectionViewSource { Source = Element.ItemsSource, IsSourceGrouped = Element.IsGroupingEnabled };
+				List.DataContext = new CollectionViewSource { Source = TemplatedItemsView.TemplatedItems, IsSourceGrouped = Element.IsGroupingEnabled };
 
 #if !WINDOWS_UWP
 				var selected = Element.SelectedItem;
