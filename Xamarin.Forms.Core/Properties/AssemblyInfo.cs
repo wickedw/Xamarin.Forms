@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Forms.StyleSheets;
 
 [assembly: AssemblyTitle("Xamarin.Forms.Core")]
 [assembly: AssemblyDescription("")]
@@ -60,3 +61,16 @@ using Xamarin.Forms.Internals;
 [assembly: Preserve]
 
 [assembly: XmlnsDefinition("http://xamarin.com/schemas/2014/forms", "Xamarin.Forms")]
+
+[assembly: StyleProperty("background-color", typeof(VisualElement), nameof(VisualElement.BackgroundColorProperty))]
+[assembly: StyleProperty("background-image", typeof(Page), nameof(Page.BackgroundImage))]
+[assembly: StyleProperty("border-color", typeof(Button), nameof(Button.BorderColor))]
+[assembly: StyleProperty("border-width", typeof(Button), nameof(Button.BorderWidth))]
+[assembly: StyleProperty("color", typeof(ITextElement), nameof(TextElement.TextColorProperty))]
+//[assembly:StyleProperty("direction", .., ..)]
+[assembly: StyleProperty("font-family", typeof(IFontElement), nameof(FontElement.FontFamilyProperty))]
+[assembly: StyleProperty("font-size", typeof(IFontElement), nameof(FontElement.FontSizeProperty))]
+[assembly: StyleProperty("font-style", typeof(IFontElement), nameof(FontElement.FontAttributesProperty))]
+[assembly: StyleProperty("margin", typeof(View), nameof(View.MarginProperty))]
+[assembly: StyleProperty("padding", typeof(IPaddingElement), nameof(PaddingElement.PaddingProperty))]
+[assembly: StyleProperty("visibility", typeof(VisualElement), nameof(VisualElement.IsVisibleProperty))]

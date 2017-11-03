@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -13,6 +12,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Xamarin.Forms.Core.XamlC
 {
+
 	class RDSourceTypeConverter : ICompiledTypeConverter
 	{
 		public IEnumerable<Instruction> ConvertFromString(string value, ILContext context, BaseNode node)
@@ -62,7 +62,7 @@ namespace Xamarin.Forms.Core.XamlC
 			yield return Create(Ldloc, uriVarDef);
 		}
 
-		static string GetPathForType(ModuleDefinition module, TypeReference type)
+		internal static string GetPathForType(ModuleDefinition module, TypeReference type)
 		{
 			foreach (var ca in type.Module.GetCustomAttributes()) {
 				if (!TypeRefComparer.Default.Equals(ca.AttributeType, module.ImportReference(typeof(XamlResourceIdAttribute))))
@@ -74,7 +74,7 @@ namespace Xamarin.Forms.Core.XamlC
 			return null;
 		}
 
-		static string GetResourceIdForPath(ModuleDefinition module, string path)
+		internal static string GetResourceIdForPath(ModuleDefinition module, string path)
 		{
 			foreach (var ca in module.GetCustomAttributes()) {
 				if (!TypeRefComparer.Default.Equals(ca.AttributeType, module.ImportReference(typeof(XamlResourceIdAttribute))))

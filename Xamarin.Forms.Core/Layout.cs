@@ -50,15 +50,11 @@ namespace Xamarin.Forms
 		}
 	}
 
-	public abstract class Layout : View, ILayout, ILayoutController
+	public abstract class Layout : View, ILayout, ILayoutController, IPaddingElement
 	{
 		public static readonly BindableProperty IsClippedToBoundsProperty = BindableProperty.Create("IsClippedToBounds", typeof(bool), typeof(Layout), false);
 
-		public static readonly BindableProperty PaddingProperty = BindableProperty.Create("Padding", typeof(Thickness), typeof(Layout), default(Thickness),
-									propertyChanged: (bindable, old, newValue) => {
-										var layout = (Layout)bindable;
-										layout.UpdateChildrenLayout();
-									}, defaultValueCreator: (bindable) => ((Layout)bindable).CreateDefaultPadding());
+		public static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
 
 		static IList<KeyValuePair<Layout, int>> s_resolutionList = new List<KeyValuePair<Layout, int>>();
 		static bool s_relayoutInProgress;
@@ -90,9 +86,14 @@ namespace Xamarin.Forms
 			set { SetValue(PaddingProperty, value); }
 		}
 
-		internal virtual Thickness CreateDefaultPadding()
+		Thickness IPaddingElement.PaddingDefaultValueCreator()
 		{
 			return default(Thickness);
+		}
+
+		void IPaddingElement.OnPaddingPropertyChanged(Thickness oldValue, Thickness newValue)
+		{
+			UpdateChildrenLayout();
 		}
 
 		internal ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();

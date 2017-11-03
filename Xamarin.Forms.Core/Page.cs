@@ -12,7 +12,7 @@ using Xamarin.Forms.Platform;
 namespace Xamarin.Forms
 {
 	[RenderWith(typeof(_PageRenderer))]
-	public class Page : VisualElement, ILayout, IPageController, IElementConfiguration<Page>
+	public class Page : VisualElement, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
 	{
 		public const string BusySetSignalName = "Xamarin.BusySet";
 
@@ -26,11 +26,7 @@ namespace Xamarin.Forms
 
 		public static readonly BindableProperty IsBusyProperty = BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
 
-		public static readonly BindableProperty PaddingProperty = BindableProperty.Create("Padding", typeof(Thickness), typeof(Page), default(Thickness), propertyChanged: (bindable, old, newValue) =>
-		{
-			var layout = (Page)bindable;
-			layout.UpdateChildrenLayout();
-		});
+		public static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
 
 		public static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(Page), null);
 
@@ -78,6 +74,16 @@ namespace Xamarin.Forms
 		{
 			get { return (Thickness)GetValue(PaddingProperty); }
 			set { SetValue(PaddingProperty, value); }
+		}
+
+		Thickness IPaddingElement.PaddingDefaultValueCreator()
+		{
+			return default(Thickness);
+		}
+
+		void IPaddingElement.OnPaddingPropertyChanged(Thickness oldValue, Thickness newValue)
+		{
+			UpdateChildrenLayout();
 		}
 
 		public string Title
