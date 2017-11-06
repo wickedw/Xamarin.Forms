@@ -18,6 +18,8 @@ namespace Xamarin.Forms.Platform.Android
 	{
 		TextColorSwitcher _hintColorSwitcher;
 		TextColorSwitcher _textColorSwitcher;
+		bool _useLegacyColorManagement;
+		bool _disposed;
 
 		public EntryRenderer(Context context) : base(context)
 		{
@@ -78,8 +80,8 @@ namespace Xamarin.Forms.Platform.Android
 				textView.SetOnEditorActionListener(this);
 				textView.OnKeyboardBackPressed += OnKeyboardBackPressed;
 
-				_textColorSwitcher = new TextColorSwitcher(_textView.TextColors);
-				_hintColorSwitcher = new TextColorSwitcher(_textView.HintTextColors);
+				_textColorSwitcher = new TextColorSwitcher(textView.TextColors);
+				_hintColorSwitcher = new TextColorSwitcher(textView.HintTextColors);
 
 				_useLegacyColorManagement = VisualStateManager.GetVisualStateGroups(e.NewElement) == null;
 

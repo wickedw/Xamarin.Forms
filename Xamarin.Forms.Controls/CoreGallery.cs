@@ -253,7 +253,6 @@ namespace Xamarin.Forms.Controls
 		List<GalleryPageFactory> _pages = new List<GalleryPageFactory> {
 				new GalleryPageFactory(() => new AutomationPropertiesGallery(), "Accessibility"),
 				new GalleryPageFactory(() => new VisualStateManagerGallery(), "VisualStateManager"),
-				new GalleryPageFactory(() => new AccessibilityGallery(), "Accessibility"),
 				new GalleryPageFactory(() => new PlatformSpecificsGallery(), "Platform Specifics"),
 				new GalleryPageFactory(() => new NativeBindingGalleryPage(), "Native Binding Controls Gallery"),
 				new GalleryPageFactory(() => new XamlNativeViews(), "Xaml Native Views Gallery"),
