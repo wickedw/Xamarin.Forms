@@ -125,6 +125,39 @@
         <Attribute>
           <AttributeName>Xamarin.Forms.Internals.Preserve</AttributeName>
         </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("background-color", typeof(Xamarin.Forms.VisualElement), "BackgroundColorProperty")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("background-image", typeof(Xamarin.Forms.Page), "BackgroundImage")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("border-color", typeof(Xamarin.Forms.Button), "BorderColor")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("border-width", typeof(Xamarin.Forms.Button), "BorderWidth")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("color", typeof(Xamarin.Forms.ITextElement), "TextColorProperty")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("font-family", typeof(Xamarin.Forms.Internals.IFontElement), "FontFamilyProperty")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("font-size", typeof(Xamarin.Forms.Internals.IFontElement), "FontSizeProperty")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("font-style", typeof(Xamarin.Forms.Internals.IFontElement), "FontAttributesProperty")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("margin", typeof(Xamarin.Forms.View), "MarginProperty")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("padding", typeof(Xamarin.Forms.IPaddingElement), "PaddingProperty")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>Xamarin.Forms.StyleSheets.StyleProperty("visibility", typeof(Xamarin.Forms.VisualElement), "IsVisibleProperty")</AttributeName>
+        </Attribute>
       </Attributes>
     </Assembly>
   </Assemblies>
@@ -432,6 +465,8 @@
       <Type Name="ViewState" Kind="Enumeration" />
       <Type Name="VisualElement" Kind="Class" />
       <Type Name="VisualElement+FocusRequestArgs" Kind="Class" />
+      <Type Name="VisualElement+StyleSheetConverter" Kind="Class" />
+      <Type Name="VisualElement+VisibilityConverter" Kind="Class" />
       <Type Name="WebNavigatedEventArgs" Kind="Class" />
       <Type Name="WebNavigatingEventArgs" Kind="Class" />
       <Type Name="WebNavigationEvent" Kind="Enumeration" />
@@ -543,6 +578,10 @@
       <Type Name="MasterDetailPage" Kind="Class" />
       <Type Name="Page" Kind="Class" />
       <Type Name="ToolbarPlacement" Kind="Enumeration" />
+    </Namespace>
+    <Namespace Name="Xamarin.Forms.StyleSheets">
+      <Type Name="StylePropertyAttribute" Kind="Class" />
+      <Type Name="StyleSheet" Kind="Class" />
     </Namespace>
     <Namespace Name="Xamarin.Forms.Xaml">
       <Type Name="AcceptEmptyServiceProviderAttribute" Kind="Class" />

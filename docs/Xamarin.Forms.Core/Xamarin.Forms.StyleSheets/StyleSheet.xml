@@ -1,0 +1,47 @@
+<Type Name="StyleSheet" FullName="Xamarin.Forms.StyleSheets.StyleSheet">
+  <TypeSignature Language="C#" Value="public sealed class StyleSheet" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit StyleSheet extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.Forms.Core</AssemblyName>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Parse">
+      <MemberSignature Language="C#" Value="public static Xamarin.Forms.StyleSheets.StyleSheet Parse (System.Reflection.Assembly assembly, string resourceId, System.Xml.IXmlLineInfo lineInfo = null);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Xamarin.Forms.StyleSheets.StyleSheet Parse(class System.Reflection.Assembly assembly, string resourceId, class System.Xml.IXmlLineInfo lineInfo) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Xamarin.Forms.StyleSheets.StyleSheet</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="assembly" Type="System.Reflection.Assembly" />
+        <Parameter Name="resourceId" Type="System.String" />
+        <Parameter Name="lineInfo" Type="System.Xml.IXmlLineInfo" />
+      </Parameters>
+      <Docs>
+        <param name="assembly">To be added.</param>
+        <param name="resourceId">To be added.</param>
+        <param name="lineInfo">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
