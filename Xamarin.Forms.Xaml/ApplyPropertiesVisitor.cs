@@ -490,6 +490,14 @@ namespace Xamarin.Forms.Xaml
 
 		static bool TryAddValue(BindableObject bindable, BindableProperty property, object value, XamlServiceProvider serviceProvider)
 		{
+			if(property?.ReturnTypeInfo?.GenericTypeArguments == null){
+				return false;
+			}
+
+			if(property.ReturnType == null){
+				return false;
+			}
+
 			if (property.ReturnTypeInfo.GenericTypeArguments.Length != 1 || !property.ReturnTypeInfo.GenericTypeArguments[0].IsInstanceOfType(value))
 				return false;
 			
@@ -614,39 +622,6 @@ namespace Xamarin.Forms.Xaml
 				cnode.Accept(new ApplyPropertiesVisitor(context, true), null);
 				return context.Values [cnode];
 			};
-		}
-	}
-
-	public static class CollectionExtensions
-	{
-		public static object EnsureCollectionInitialized(this BindableObject bindable, BindableProperty property)
-		{
-			// Retrieve the value
-			var propertyValue = bindable.GetValue(property);
-
-			// If it's not initialized, create it
-			if (propertyValue == null)
-			{
-				propertyValue = Activator.CreateInstance(property.ReturnType);
-				bindable.SetValue(property, propertyValue);
-			}
-
-			return propertyValue;
-		}
-
-		public static object EnsureCollectionInitialized(this Setter setter)
-		{
-			// Retrieve the value
-			var propertyValue = setter.Value;
-
-			// If it's not initialized, create it
-			if (propertyValue == null)
-			{
-				propertyValue = Activator.CreateInstance(setter.Property.ReturnType);
-				setter.Value = propertyValue;
-			}
-
-			return propertyValue;
 		}
 	}
 }
