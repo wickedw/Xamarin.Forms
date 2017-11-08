@@ -49,7 +49,7 @@ namespace Xamarin.Forms.Platform.WinRT
 
 			return new FrameworkElementAutomationPeer(Control);
 		}
-		
+
 		protected override Windows.Foundation.Size ArrangeOverride(Windows.Foundation.Size finalSize)
 		{
 			if (Element == null)

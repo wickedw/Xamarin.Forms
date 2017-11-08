@@ -169,7 +169,7 @@ namespace Xamarin.Forms.Platform.WinRT
 			// set on MeasureOverrideDelegate. However, if the parent is a TableView, we'll already 
 			// have a complete Cell object to work with, so we can move ahead.
 			if (_isListViewRealized || args.NewValue is Cell)
-					SetCell(args.NewValue, sender as CellControl);
+				SetCell(args.NewValue, sender as CellControl);
 			else if (args.NewValue != null)
 				_newValue = args.NewValue;
 		}

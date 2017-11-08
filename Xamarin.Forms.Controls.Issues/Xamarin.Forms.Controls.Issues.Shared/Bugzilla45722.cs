@@ -20,7 +20,7 @@ namespace Xamarin.Forms.Controls.Issues
 #endif
 
 	[Preserve(AllMembers = true)]
-	[Issue(IssueTracker.Bugzilla, 45722, "Memory leak in Xamarin Forms ListView", PlatformAffected.All)]
+	[Issue(IssueTracker.Bugzilla, 45722, "Memory leak in Xamarin Forms ListView", PlatformAffected.UWP)]
 	public class Bugzilla45722 : TestNavigationPage
 	{
 		const string Success = "Success";
