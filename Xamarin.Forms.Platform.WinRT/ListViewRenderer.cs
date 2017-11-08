@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -83,8 +82,6 @@ namespace Xamarin.Forms.Platform.WinRT
 					List.SetBinding(ItemsControl.ItemsSourceProperty, "");
 				}
 
-				// TODO hartez 2017/07/13 10:53:04 Should this be bound to templated items view instead?	
-
 				// WinRT throws an exception if you set ItemsSource directly to a CVS, so bind it.
 				List.DataContext = new CollectionViewSource { Source = TemplatedItemsView.TemplatedItems, IsSourceGrouped = Element.IsGroupingEnabled };
 
@@ -156,8 +153,6 @@ namespace Xamarin.Forms.Platform.WinRT
 					List.ItemClick -= OnListItemClicked;
 				}
 				List.SelectionChanged -= OnControlSelectionChanged;
-
-				Debug.WriteLine($">>>>> ListViewRenderer Dispose 142: Setting the list datacontext to null");
 				List.DataContext = null;
 				List = null;
 			}

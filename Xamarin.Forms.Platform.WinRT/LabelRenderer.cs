@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
@@ -52,11 +50,6 @@ namespace Xamarin.Forms.Platform.WinRT
 			return new FrameworkElementAutomationPeer(Control);
 		}
 		
-		public LabelRenderer()
-		{
-			Debug.WriteLine($">>>>> LabelRenderer count is: {Interlocked.Increment(ref s_count)}");
-		}
-
 		protected override Windows.Foundation.Size ArrangeOverride(Windows.Foundation.Size finalSize)
 		{
 			if (Element == null)
@@ -127,8 +120,6 @@ namespace Xamarin.Forms.Platform.WinRT
 
 			if (e.NewElement != null)
 			{
-				Debug.WriteLine($">>>>> LabelRenderer OnElementChanged 112: Element = {e.NewElement.Text}");
-
 				if (Control == null)
 				{
 					SetNativeControl(new TextBlock());
